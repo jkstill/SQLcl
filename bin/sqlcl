@@ -1,0 +1,16 @@
+#!/bin/bash
+
+: 'COMMENT' <<-COMMENT
+
+I have been experimenting with haveged, /dev/random and /dev/urandom and how it can delay java logins.
+To avoid possible delays in due to current state of these, /dev/urandom specified on cmdline as I am not so concerned about Oracle security on this test box
+ie. There is never any real data in any of the databases and no one but me has access
+
+COMMENT
+
+SQLCL_HOME='/usr/share/sqlcl'
+
+java -Djava.security.egd=file:/dev/./urandom -Dsecurerandom.source=file:/dev/./urandom -Djava.awt.headless=true -Dapple.awt.UIElement=true -Xss10M -Djava.net.useSystemProxies=true -client -cp ${SQLCL_HOME}/lib/extensions/*:${SQLCL_HOME}/lib/oracle.sqldeveloper.sqlcl.jar: oracle.dbtools.raptor.scriptrunner.cmdline.SqlCli "$@"
+
+
+
