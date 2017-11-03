@@ -1,5 +1,5 @@
 
-= SQLcl Scripts and Notes
+# SQLcl Scripts and Notes
 
 While SQLcl ships with a bash script 'sql', I have found it more reliable to create a custom script.
 
@@ -8,7 +8,7 @@ Sometimes the stock sql script finds the Oracle Java installation rather than my
 Ironically SQLcl will not work with the Java found in any current installations of Oracle, as SQLcl requires Java 1.8+
 
 
-== Java Command Line
+## Java Command Line
 
 This is the default command line for a local Java found in PATH:
 
@@ -16,7 +16,7 @@ This is the default command line for a local Java found in PATH:
 java -Djava.awt.headless=true -Dapple.awt.UIElement=true -Xss10M -Djava.net.useSystemProxies=true -client -cp /usr/share/sqlcl/lib/extensions/*:/usr/share/sqlcl/lib/oracle.sqldeveloper.sqlcl.jar: oracle.dbtools.raptor.scriptrunner.cmdline.SqlCli 
 ```
 
-== Security
+## Security
 
 I have been experimenting with haveged, /dev/random and /dev/urandom and how it can delay java logins.
 (google this if unfamiliar with it)
@@ -30,13 +30,13 @@ The system I am working on never has any real data, and I am the only user.
 
 The use of /dev/urandom is not really recommended for production use.
 
-== Complete command
+## Complete command
 
 ```java
 java -Djava.security.egd=file:/dev/./urandom -Dsecurerandom.source=file:/dev/./urandom -Djava.awt.headless=true -Dapple.awt.UIElement=true -Xss10M -Djava.net.useSystemProxies=true -client -cp /usr/share/sqlcl/lib/extensions/*:/usr/share/sqlcl/lib/oracle.sqldeveloper.sqlcl.jar: oracle.dbtools.raptor.scriptrunner.cmdline.SqlCli 
 ```
 
-== Bash Script sqlcl
+## Bash Script sqlcl
 
 ```bash
 #!/bin/bash
